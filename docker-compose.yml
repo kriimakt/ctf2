@@ -1,0 +1,51 @@
+version: "3.5"
+services:
+  db:
+        image: mysql:8.0
+        ports:
+        - "3306:3306"
+        environment:
+        - "MYSQL_ROOT_PASSWORD=Azerty78"
+        - "MYSQL_DATABASE=wp"
+        volumes:
+        - bdd2:/var/lib/mysql
+  apachephp:
+        build: .
+        ports:
+        - "80:80"
+#        - "21:21"
+#        - "20:20"
+        links:
+        - "db:db"
+  phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        ports:
+        - "81:80"
+        environment:
+        - PMA_HOST=db
+        - PMA_USER=root
+        - PMA_PASSWORD=Azerty78
+  bind9:
+    image: ubuntu/bind9
+    container_name: srvdns
+    environment:
+      - BIND9_USER=root
+      - TZ=Europe/Paris
+    ports:
+      - "53:53"
+      - "53:53/udp"
+    volumes:
+      - ./configdns:/etc/bind
+      - ./cachedns:/var/cache/bind
+      - ./recordsdns:/var/lib/bind
+    restart: unless-stopped
+
+
+
+  flag1:
+        build: ./CTF1
+        ports:
+        - "5000:22"
+volumes:
+  bdd2:
+  site:
