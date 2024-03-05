@@ -19,6 +19,7 @@ www     IN      A       $IPGOOD
 tym     IN      A       $IPGOOD
 yoann   IN      A       $IPGOOD
 jeff	IN	A	$IPGOOD
-mm	IN	A	$IPGOOD" >> ./configdns/db.adrar.lan
+mm	IN	A	$IPGOOD
+flo	IN	A	$IPGOOD" >> ./configdns/db.adrar.lan
 
 sudo docker compose up --build

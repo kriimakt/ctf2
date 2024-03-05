@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     {% load static %}
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'app/favicon/apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'app/favicon/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'app/favicon/favicon-16x16.png' %}">
+        <link rel="manifest" href="{% static 'app/favicon/site.webmanifest' %}">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Lakshya CTF</title>
+
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+        
+        <link rel="stylesheet" href="{% static 'app/css/all.css' %}">
+
+        <link rel="stylesheet" href="{% static 'app/css/bootstrap4-neon-glow.min.css' %}">
+
+        <link rel='stylesheet' href="{% static 'app/css/hack.min.css' %}">
+        
+        <link rel="stylesheet" href="{% static 'app/css/main.css' %}">
+        <link rel="stylesheet" href="{% static 'app/css/flipclock.css' %}">
+        
+        
+</head>
+
+<body>
+    <div class="navbar-dark text-white">
+        <div class="container">
+            <nav class="navbar px-0 py-0 navbar-expand-lg navbar-dark">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a href="/" class="pl-md-0 p-3 text-decoration-none text-light">
+                            <h3 class="bold"><span class="color_danger">LAKSHYA</span><span class="color_white">CTF</span></h3>
+                        </a>
+                    </div>
+                    <div class="navbar-nav ml-auto">
+                        <a href="/" class="p-3 text-decoration-none text-light bold">Home</a>
+                        <a href="/instructions" class="p-3 text-decoration-none text-light bold">Instructions</a>
+                        <a href="/leaderboard" class="p-3 text-decoration-none text-light bold">Leaderboard</a>
+                        <a href="/quest" class="p-3 text-decoration-none text-light bold">Challenges</a>
+                        {% if request.user.is_authenticated %}
+                            <div class="btn-group" >
+                            <a class="dropdown-toggle p-3 text-decoration-none text-light bold" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <svg class="bi bi-person-circle" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
+  <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+  <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
+</svg>
+                          </a>
+                          <div class="dropdown-menu" x-placement="bottom-start" style="">
+                            <a class="dropdown-item text-decoration-none text-light bold" href="/user/{{request.user.username}}">My Profile</a>
+                            <a class="dropdown-item text-decoration-none text-light bold" href="/password-reset/">Reset Password</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="/logout" class="dropdown-item text-decoration-none text-light bold">Logout</a>
+                          </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+    </div>
+
+    <div class="jumbotron bg-transparent mb-0 pt-0 radius-0">
+        <div class="container">
+            <div class="row justify-content-center mb-3">
+                <div class="col-md-6">
+                    <div class="countdown-timer"></div>
+                </div>
+            </div>
+            <div class="row justify-content-center mb-3">
+                <div class="col-md-12 text-center">
+                    <h3 id="points" style="font-size: 2rem">Score: {{ request.user.points }}</h3>
+                </div>
+            </div>
+             {% for message in messages %}
+                            <div class="alert alert-dismissible fade show alert-danger" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                                </button>
+                                <strong>{{ message }}</strong>
+                            </div>
+                        {% endfor %}
+            <div class="row">
+                <div class="col-xl-12  text-center">
+                    <h1 class="display-1 bold color_white content__title">{{ machine.machineTitle|upper }}<span class="vim-caret">&nbsp;</span></h1>
+                    <p class="text-grey text-spacey hackerFont lead mb-5">
+                        {{ machine.machineDescription }}
+                    </p>
+                </div>
+            </div>
+            <div class="row hackerFont">
+            </div>
+            <h4>Machine Information</h4>
+            <div class="row mt-5">
+                <div class="col-md-6">
+                    <div class="card border-primary mb-3 text-center">
+                        <div class="card-body">
+
+                            <h4>Machine IP: {{ machine.machineIp }}</h4>
+                        </div>
+                    </div>
+                    <div class="card border-primary mb-3 text-center">
+                        <div class="card-body">
+
+                            <h4>Base Points: {{ machine.machinePoints }}</h4>
+                        </div>
+                    </div>
+                    <div class="card border-primary mb-3 text-center">
+                        <div class="card-body machine_page justify-content-center" style="display: inline-flex;">
+                            <h4 class="solvers">Solvers: <span class="solver_num">{{ machine.machineSolvers }}</span> &nbsp;<span class="color_danger">Difficulty:</span></h4>
+                            <div class="pl-2"><canvas style="width:80px;height:40px" id="machine_id_1_chart"></canvas></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card border-primary mb-3 text-center">
+                        <div class="card-body">
+                            <canvas id="machineChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card border-primary mb-3 text-center">
+                        <div class="card-body">
+                            <h4>Rate the challenge</h4>
+                            <form method="POST">
+                                {% csrf_token %}
+                            <div class="row input-group mt-3 justify-content-center">
+                                
+                                    <div class="ht-tm-element custom-control custom-radio">
+                                        <input type="radio" id="radio1_{{ machine.questionId }}" name="radio_btn" class="custom-control-input" value="EA" required>
+                                        <label class="custom-control-label" for="radio1_{{ machine.questionId }}">Easy</label>
+                                    </div>
+                                    <div class="ht-tm-element custom-control custom-radio">
+                                        <input type="radio" id="radio2_{{ machine.questionId }}" name="radio_btn" class="custom-control-input" value="ME">
+                                        <label class="custom-control-label" for="radio2_{{ machine.questionId }}">Medium</label>
+                                    </div>
+                                    <div class="ht-tm-element custom-control custom-radio">
+                                        <input type="radio" id="radio3_{{ machine.questionId }}" name="radio_btn" class="custom-control-input" value="HA">
+                                        <label class="custom-control-label" for="radio3_{{ machine.questionId }}">Hard</label>
+                                    </div>
+                                
+                            </div>
+
+                            <div class="row justify-content-center pb-3">
+                                <div class="input-group mt-3 col-md-6">
+                                    <input type="text" class="form-control" placeholder="Enter Flag" aria-label="Enter Flag" name="flag" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <input type="submit" id="submit" class="btn btn-outline-secondary" value="Go!" placeholder="Go!">
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <script src="{% static 'app/js/jquery-3.4.1.min.js' %}"></script>
+        <script src="{% static 'app/js/popper.min.js' %}"></script>
+        <script src="{% static 'app/js/bootstrap.min.js' %}"></script>
+       
+       
+        
+         <script src="{% static 'app/js/preloader.js' %}"></script>
+        <script src="{% static 'app/js/moment.min.js' %}"></script>
+        <script src="{% static 'app/js/chart.min.js' %}"></script>
+        <script src="{% static 'app/js/flipclock.js' %}"></script>
+        <script src="{% static 'app/js/questionLogic.js' %}"></script>
+        <script>
+            var config = {
+                type: 'radar',
+                data: {
+                    labels: [
+                        'Enumeration', 'CTF-Like', 'Custom Exploration', 'Real-life', 'CVE'
+                    ],
+                    datasets: [{
+                        label: 'Problem Setter\'s Ratings',
+                        backgroundColor: "#ff000054",
+                        borderColor: 'red',
+                        pointBackgroundColor: 'red',
+                        data: [
+                            {{ machine.enumeration }},
+                            {{ machine.ctf_like }},
+                            {{ machine.custom_exploitation }},
+                            {{ machine.real_life }},
+                            {{ machine.cve }},
+                        ]
+                    }, ]
+                },
+                options: {
+                    legend: {
+                        display: false,
+                    },
+                    scale: {
+                        ticks: {
+                            max: 5,
+                            min: 1,
+                            stepSize: 1,
+                            display: false
+                        },
+                        gridLines: {
+                            color: "#FFF"
+                        }
+                    }
+                }
+            };
+
+            var customTooltips = function(tooltip) {
+                        // Tooltip Element
+                        var tooltipEl = document.getElementById('chartjs-tooltip');
+
+                        if (!tooltipEl) {
+                            tooltipEl = document.createElement('div');
+                            tooltipEl.id = 'chartjs-tooltip';
+                            tooltipEl.innerHTML = '<table></table>';
+                            this._chart.canvas.parentNode.appendChild(tooltipEl);
+                        }
+                        // Hide if no tooltip
+                        if (tooltip.opacity === 0) {
+                            tooltipEl.style.opacity = 0;
+                            return;
+                        }
+
+                        // Set caret Position
+                        tooltipEl.classList.remove('above', 'below', 'no-transform');
+                        if (tooltip.yAlign) {
+                            tooltipEl.classList.add(tooltip.yAlign);
+                        } else {
+                            tooltipEl.classList.add('no-transform');
+                        }
+
+                        function getBody(bodyItem) {
+                            return bodyItem.lines;
+                        }
+
+                        // Set Text
+                        if (tooltip.body) {
+                            var titleLines = tooltip.title || [];
+                            var bodyLines = tooltip.body.map(getBody);
+
+                            var innerHtml = '<thead>';
+
+                            titleLines.forEach(function(title) {
+                                innerHtml += '<tr><th>' + title + '</th></tr>';
+                            });
+                            innerHtml += '</thead>';
+                            
+                            var tableRoot = tooltipEl.querySelector('table');
+                            tableRoot.innerHTML = innerHtml;
+                        }
+
+                        var positionY = this._chart.canvas.offsetTop;
+                        var positionX = this._chart.canvas.offsetLeft;
+
+                        // Display, position, and set styles for font
+                        tooltipEl.style.opacity = 1;
+                        tooltipEl.style.left = positionX + tooltip.caretX + 'px';
+                        tooltipEl.style.top = positionY + tooltip.caretY + 'px';
+                        tooltipEl.style.fontFamily = tooltip._bodyFontFamily;
+                        tooltipEl.style.fontSize = tooltip.bodyFontSize + 'px';
+                        tooltipEl.style.fontStyle = tooltip._bodyFontStyle;
+                        tooltipEl.style.padding = tooltip.yPadding + 'px ' + tooltip.xPadding + 'px';
+                    };
+
+            window.myRadar = new Chart(document.getElementById('machineChart'), config);
+            
+            var ctx = document.getElementById('machine_id_1_chart').getContext('2d');
+            window.myBar = new Chart(ctx, {
+                type: 'bar',
+                data: barChartData = {
+                    labels: ['Easy', 'Medium', 'Hard'],
+                    datasets: [{
+                        label: 'Dataset 1',
+                        backgroundColor: [
+                            '#17b06b','#ffce56', '#ef121b'
+                        ],
+                        borderColor: [
+                            '#17b06b', '#ffce56','#ef121b'
+                        ],
+                        borderWidth: 1,
+                        data: [{{ machine.easyRating }}, {{ machine.mediumRating }},{{ machine.hardRating }}] 
+                    }]
+
+                },
+                options: {
+                    tooltips: {
+                        enabled: false,
+                        position: 'average',
+                        custom: customTooltips
+                    },
+                    responsive: false,
+                    legend: {
+                        display: false,
+                    },
+                    scales: {
+                        yAxes: [{
+                            display: false,
+                            ticks: {
+                                beginAtZero: true,
+                            },
+                        }],
+                        xAxes: [{
+                            display: false
+                        }]
+                    }
+                }
+            });
+        </script>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+        
+
+</body>
+
+</html>

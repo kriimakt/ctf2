@@ -15,6 +15,7 @@ services:
         - "80:80"
 #        - "21:21"
 #        - "20:20"
+        - "4242:4242"
         links:
         - "db:db"
   phpmyadmin:

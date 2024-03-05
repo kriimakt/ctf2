@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    {% load static %}
+    <meta charset="utf-8">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'app/favicon/apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'app/favicon/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'app/favicon/favicon-16x16.png' %}">
+        <link rel="manifest" href="{% static 'app/favicon/site.webmanifest' %}">
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Lakshya CTF</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+        <link rel="stylesheet" href="{% static 'app/css/all.css' %}">
+
+        <link rel="stylesheet" href="{% static 'app/css/bootstrap4-neon-glow.min.css' %}">
+
+        
+
+        <link rel='stylesheet' href="{% static 'app/css/hack.min.css' %}">
+        
+        <link rel="stylesheet" href="{% static 'app/css/main.css' %}">
+        <link rel="stylesheet" href="{% static 'app/css/flipclock.css' %}">
+</head>
+
+<body class="imgloaded">
+    <div class="glitch">
+        <div style="position: fixed;" class="glitch__img"></div>
+        <div style="position: fixed;" class="glitch__img"></div>
+        <div style="position: fixed;" class="glitch__img"></div>
+        <div style="position: fixed;" class="glitch__img"></div>
+        <div style="position: fixed;" class="glitch__img"></div>
+    </div>
+    <div class="navbar-dark text-white">
+        <div class="container">
+            <nav class="navbar px-0 py-0 navbar-expand-lg navbar-dark">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a href="/" class="pl-md-0 p-3 text-decoration-none text-light">
+                            <h3 class="bold"><span class="color_danger">LAKSHYA</span><span class="color_white">CTF</span></h3>
+                        </a>
+                    </div>
+                    <div class="navbar-nav ml-auto">
+                        <a href="/" class="p-3 text-decoration-none text-light bold">Home</a>
+                        <a href="/about" class="p-3 text-decoration-none text-light bold">About</a>
+                        <a href="/leaderboard" class="p-3 text-decoration-none text-light bold">Leaderboard</a>
+                        <a href="/instructions" class="p-3 text-decoration-none text-light bold">Instructions</a>
+                        {% if request.user.is_authenticated %}
+                            <div class="btn-group" >
+                            <a class="dropdown-toggle p-3 text-decoration-none text-light bold" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <svg class="bi bi-person-circle" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
+  <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+  <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
+</svg>
+                          </a>
+                          <div class="dropdown-menu" x-placement="bottom-start" style="">
+                            <a class="dropdown-item text-decoration-none text-light bold" href="/user/{{request.user.username}}">My Profile</a>
+                            <a class="dropdown-item text-decoration-none text-light bold" href="/password-reset/">Reset Password</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="/logout" class="dropdown-item text-decoration-none text-light bold">Logout</a>
+                          </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+    </div>
+
+    <div class="jumbotron bg-transparent mb-0 pt-3 radius-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="display-1 bold color_white content__title text-center">CONTEST <span class="color_danger">BEGINS </span> IN<span class="vim-caret">&nbsp</span></h1>
+                    <div class="row justify-content-center py-5">
+                        <div class="col-md-7 col-md-offset-5">
+                            <div class="countdown-timer"></div>
+                        </div>
+                    </div>
+                    <p class="text-grey text-spacey text-center hackerFont lead mb-5">
+                        While you're at it why don't you get acquianted with the instuctions!
+                    </p>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    <h1 class="bold color_white content__title text-center"><span class="color_danger">INSTRUC</span>TIONS<span class="vim-caret">&nbsp</span></h1>
+                    <p class="text-grey text-spacey text-center hackerFont lead">
+                        Now that you are a part of our community, you must know of some rules we follow around here.
+                    </p>
+                    <div class="row justify-content-center  hackerFont">
+                        <div class="col-md-10">
+                           <h5 class="bold color_white pt-3">
+                                General Rules and Instructions
+                            </h5>
+                            <ul>
+                                <li>The username that you would create would serve as your team name. Please share the credentials with your teammate (if any) and ask them to login using the same credentials. Immediately contact the team if you are facing any issues with registration. Our contact information is available <a href='/about'> here.</a></li>
+                                <li>From the start of the event, 24 hours will be alloted to complete the challenges and boxes. The event will get over on <span class="vim-caret"> 15 June, 2020 at 12:00 PM.</span></li>
+                                <li>Each question has some points to it depending upon the difficulty. Taking a hint will deduce 10% of the points associated with the question. </li>
+                                <li>There is no particular order of solving the questions.</li>
+                                <li>Judging of the round will be based on two parameters. If there is a tie-breaker at points, the last submission time of the last solved question will be used as a secondary parameter to rank the users. The user having an earlier last-submission-timestamp will be ranked higher, in case of a tie-break.</li>
+                                <li>Ranks can be viewed on the leaderboard page. The leaderboard is updated every time a challenge or box is solved or a hint is taken.</li>
+                                <li>Flags found are of the format <span class="vim-caret">lakshya_CTF{some_text}.</span> Some of the files may contain just the inner text within the brackets. Make sure you submit it in the format specified. Flag text is <span class="vim-caret"> not case sensitive. </span></li>
+                                <li>This is a competitive environment with the aim of learning cyber security and ethical hacking. Please do not share the flags & solutions with others.</li>
+                                <li>Feel free to explore and read about the concept behind the problem. </li>
+
+                            </ul>
+                             <h5 class="bold color_white pt-3">
+                                Instructions for Solving Boxes
+                            </h5>
+                            <ul>
+                                <li>Each box is provisioned an IP address. You need to perform reconissance to get information about what services are running on the box.</li>
+                                <li> Each box has its dedicated page, which can be seen by clicking on the machine card on the challenges' page. This dedicated page can provide useful information, and different approaches that you may follow to tackle the box.</li>
+                                <li> There are two flags associated with each box - The user flag and the root flag. On successfully submitting the user flag, 40% of the total box points will be awarded, and on successful submission of the root flag, the remaining 60% points will be awarded. </li>
+                                <li> Every box has a user - lakshya created on it. </li>
+                                <li>When you are able to achieve command injection on the box (using some vulnerability or an exploit you crafted), you should read the user flag stored in the system at /home/lakshya/flag.txt. This flag is the password for the user - lakshya for that particular box. In order to escalate the system and gain root access, you can SSH into the machine with - <br>
+                                "ssh lakshya@machine-ip" with the password as the user flag. 
+                                <li> The root flag will be readable only by the root user. By correctly escalating privileges, you can find the root flag at /root/flag.txt. </li>
+                                <li> You are requested not to delete any files on the system that can make the box inaccessible to other users. Every team should be given a fair and equal chance to takle the box. </li>
+                                <li> After you have successfully rooted the box, you should delete your files and exploit programs, to ensure that others don't get hold of them. </li>
+                                <li> To prevent unintended installations and bloatware on the system, we have disabled Internet access on the boxes. Any exploit files you wish to copy should be transferred over scp or any other medium that you are well-versed with.</li>
+                                <li>Do not use Kernel/ distribution specific exploits to try and escalate privileges. All the kernels and distributions are updated to the latest versions. These kind of exploits are prone to brick the system and thus, making it inaccessible for other users. </li>
+                            </ul>
+                            <h5 class="bold color_white pt-3">
+                                Special Rules and Instructions
+                            </h5>
+                            <ul>
+                                <li> If you have any queries, or problems you can contact us <a href='/about'> here.</a> Our team will be available for questions and problems throughout the event.
+                                <li>Performing denial of service attacks on the server will lead to disqualification.</li>
+                                <li>Brute force attacks on the flag form is prohibited.</li>
+                                <li>If you find a vulnerability in the website, feel free to use it for your advantage, until we patch it! </li>
+                                <li>The write-ups for the challenges and boxes will be released after the CTF is over. </li>
+                            </ul>
+                            <div class="row text-center pt-5">
+                                <div class="col-xl-12">
+                                    <button id="hack" class="btn btn-outline-danger btn-shadow px-3 my-2 ml-0 ml-sm-1 text-left typewriter" onclick="(function(){window.location.href='/quest'})();">
+                                        <h4>LET'S HACK!</h4>
+                                    </button>
+                                    <small id="registerHelp" class="mt-2 form-text text-muted">We expect you to adhere by the rules. Failure to do so might result in disqualification.</small>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static 'app/js/jquery-3.4.1.min.js' %}"></script>
+        <script src="{% static 'app/js/popper.min.js' %}"></script>
+        <script src="{% static 'app/js/bootstrap.min.js' %}"></script>
+   <script src="{% static 'app/js/flipclock.js' %}"></script>
+    <script>
+        var clock;
+
+    function getTime(){
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        
+          clock = $('.countdown-timer').FlipClock(this.responseText, {
+            clockFace: 'HourlyCounter',
+            countdown: true,
+            callbacks: {
+              stop: function() {
+                 $("#hack").show();
+              }
+            }
+        });
+        }
+       };
+        xhttp.open("GET", "/wait-time", true);
+        xhttp.send();
+        setTimeout(getTime,30000);
+      }
+
+
+    $(document).ready(function() {
+      $("#hack").hide();
+      getTime();
+
+  });
+
+    </script>
+</body>
+
+</html>

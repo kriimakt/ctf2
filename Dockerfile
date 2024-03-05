@@ -28,10 +28,14 @@ COPY vhosttym.conf /etc/apache2/sites-available
 COPY vhostyoann.conf /etc/apache2/sites-available
 COPY vhostmm.conf /etc/apache2/sites-available
 COPY vhostjeff.conf /etc/apache2/sites-available
+COPY vhostflo.conf /etc/apache2/sites-available
+COPY flagswitch.html /var/www/html/flo/
 RUN a2ensite vhosttym.conf
 RUN a2ensite vhostyoann.conf
 RUN a2ensite vhostmm.conf
 RUN a2ensite vhostjeff.conf
+RUN a2ensite vhostflo.conf
+RUN echo "Listen 4242" >> /etc/apache2/ports.conf
 #RUN php /var/www/html/mm/composer.phar install
 #RUN php /var/www/html/mm/bin/console d:d:c
 #RUN php /var/www/html/mm/bin/console d:m:m
