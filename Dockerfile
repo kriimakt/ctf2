@@ -20,7 +20,21 @@ RUN echo "site:Azerty78" | chpasswd
 RUN sed -i '$ d' /etc/passwd && echo "site:x:1000:1000::/var/www/html:/bin/bash" >> /etc/passwd
 RUN echo "DefaultRoot /var/www/html/" >> /etc/proftpd/proftpd.conf
 COPY CtfAdrar/ /var/www/html/CtfAdrar/
-RUN apt-get install -y apache2 nodejs npm && npm install -g @vue/cli
+#RUN apt-get install -y apache2 nodejs npm && npm install -g @vue/cli
+COPY yoyo/ /var/www/html/CtfYoann/
+COPY mm/ /var/www/html/mm/
+COPY jeff/ /var/www/html/jeff/
+COPY vhosttym.conf /etc/apache2/sites-available
+COPY vhostyoann.conf /etc/apache2/sites-available
+COPY vhostmm.conf /etc/apache2/sites-available
+COPY vhostjeff.conf /etc/apache2/sites-available
+RUN a2ensite vhosttym.conf
+RUN a2ensite vhostyoann.conf
+RUN a2ensite vhostmm.conf
+RUN a2ensite vhostjeff.conf
+#RUN php /var/www/html/mm/composer.phar install
+#RUN php /var/www/html/mm/bin/console d:d:c
+#RUN php /var/www/html/mm/bin/console d:m:m
 # Ouvrir le port 80
 EXPOSE 80
 EXPOSE 21
