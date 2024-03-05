@@ -9,15 +9,19 @@
 </head>
 <body>
     <main>
-        <h2>Ce Flag est caché dans un coffre. Trouverez-vous la combinaison pour l'ouvrir ?</h2>
-        <!--<section class="enonce">
-            <div class="enonce__analyst"></div>
-            <p class="enonce__phrase">Contacter l'Analyste pour obtenir de l'aide</p>
-            <button class="enonce__appel">Appeler !</button>
-            <p class="enonce__indice"></p>
-        </section>-->
+        <h2>Ce Flag est caché dans un coffre. Communiquez avec votre coéquipier virtuel pour en trouver la combinaison. Vous pouvez contacter un l'Analyste pour obtenir de l'aide, mais chacune de ses interventions vous donnera une pénalité de point. Trouverez-vous la combinaison pour l'ouvrir avec le minimum d'indice ?</h2>
+        <section class="enonce">
+            <h2>ANALYSTE</h2>
+            <img class="enonce__analyst" src="./src/img/avatar_analyste.png" alt="L'Analyste">
+            <div>
+                <p class="enonce__phrase">Contacter l'Analyste pour obtenir de l'aide <button class="enonce__appel">Appeler !</button></p>
+                
+                <p class="enonce__indice"></p>
+            </div>
+        </section>
         <section class="coequipier">
-            <div class="coequipier__portrait"></div>
+            <h2>COEQUIPIER</h2>
+            <img class="coequipier__portrait" src="./src/img/avatar_coequipier.png" alt="Le Coéquipier">
             <p class="coequipier__message">
 
             </p>
@@ -29,18 +33,21 @@
 
             </article>
         </section>
-        <section class="joueur">
-            <textarea name="" id="interface" cols="30" rows="10"></textarea>
-            <button class="joueur__button phase0">Envoyer</button>
-            <p class="joueur__message"></p>
+        <section class="interface">
+            <section class="joueur">
+                <h2>VOTRE REPONSE</h2>
+                <textarea name="" id="interface" cols="30" rows="10"></textarea>
+                <button class="joueur__button phase0">Envoyer</button>
+                <p class="joueur__message"></p>
+            </section>
+            <section class="coffre">
+                <h2>LE COFFRE</h2>
+                <input type="text" class="coffre__combinaison">
+                <button class="coffre__button">Valider la Combinaison</button>
+                <p class="coffre__answer"></p>
+                <p class="coffre__indice"></p>
+            </section>
         </section>
-        <section class="coffre">
-            <h2>Le Coffre</h2>
-            <input type="text" class="coffre__combinaison">
-            <button class="coffre__button">Valider la Combinaison</button>
-            <p class="coffre__answer"></p>
-        </section>
-        <!--<iframe src="https://www.binarytranslator.com/" width="100%" height="300"></iframe>-->
     </main>
 </body>
 </html>

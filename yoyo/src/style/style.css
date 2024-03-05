@@ -1,20 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 .enonce, .coequipier {
     display: grid;
     grid-template-columns: 15% 85%;
 }
 
-.enonce__analyst {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    background-color: #333;
-    grid-column: 1;
-    grid-row: 1 / span 3;
+.enonce h3, .coequipier h3 {
+    grid-row: 1;
 }
 
-.enonce__phrase {
+.enonce__analyst {
+    width: 150px;
+    /*height: 150px;*/
+    /*background-color: #333;*/
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.enonce > div {
     grid-column: 2;
-    grid-row: 1;
+    grid-row: 2;
+}
+
+.enonce__indice--bulle{
+    border: 2px solid #333;
+    border-radius: 20px;
+    height: fit-content;
+    width: fit-content;
+    padding: 10px 15px;
+}
+
+/*.enonce__phrase {
+    grid-column: 2;
+    grid-row: 2;
 }
 
 .enonce__appel {
@@ -23,46 +45,52 @@
 }
 
 .enonce__indice {
+    grid-column: 2;
+    grid-row: 3;
+}*/
+
+iframe {
+    border: 0;
     grid-column: 1 / span 2;
     grid-row: 3;
 }
 
-iframe {
-    grid-column: 1 / span 2;
-    grid-row: 4;
-}
-
 .coequipier__portrait{
-    width: 70px;
-    height: 70px;
+    width: 150px;
+    /*height: 70px;
     border-radius: 50%;
-    background-color: #333;
+    background-color: #333;*/
     grid-column: 1;
-    grid-row: 1;
+    grid-row: 2;
 }
 
 .coequipier__message {
+    border: 2px solid #333;
+    border-radius: 20px;
+    height: fit-content;
+    width: fit-content;
+    padding: 10px 15px;
     grid-column: 2;
-    grid-row: 1;
+    grid-row: 2;
 }
 
 .coequipier__morse{
     grid-column: 1 / span 2;
-    grid-row: 2;
+    grid-row: 3;
 }
 
 .coequipier__transcription{
     grid-column: 1 / span 2;
-    grid-row: 3;
+    grid-row: 4;
 }
 
 .coequipier__thumbnail{
     grid-column: 1 / span 2;
-    grid-row: 4;
+    grid-row: 5;
 }
 
 .coequiper__container {
-    position: absolute;
+    position: fixed;
     top : 0;
     height: 100vh;
     width: 100vw;
@@ -78,6 +106,15 @@ iframe {
 .coequipier__alphabet {
     max-height: 90%;
     max-width: 90%;
+}
+
+.interface{
+    display: flex;
+}
+
+.joueur, .coffre{
+    display: flex;
+    flex-direction: column;
 }
 
 .displayFlex {
