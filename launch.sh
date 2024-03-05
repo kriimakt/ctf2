@@ -1,7 +1,8 @@
 #/bin/bash
 sudo chmod 777 ./configdns
-IPFULL=$(ip a | grep 'dynamic ens33' | cut -d " " -f6)
-IPGOOD=${IPFULL%???}
+#IPFULL=$(ip a | grep 'dynamic ens33' | cut -d " " -f6)
+#IPGOOD=${IPFULL%???}
+IPGOOD=192.168.15.200
 echo '$ORIGIN adrar.lan.
 $TTL    604800
 @       IN      SOA     srvdns.adrar.lan. root.localhost. (
